@@ -40,8 +40,11 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProfileImage)
-            </td>
+@*                 @Html.DisplayFor(modelItem => item.ProfileImage)
+
+ *@                 <img src="#" alt="Uploaded Image" class="img-thumbnail" />
+
+</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
