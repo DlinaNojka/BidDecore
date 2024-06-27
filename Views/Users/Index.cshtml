@@ -3,14 +3,56 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    body {
+        background-color: #181818;
+        color: #fff;
+    }
 
-<h1>Index</h1>
+    .profile-container {
+        background-color: #282828;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
+    .profile-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .profile-info h5 {
+        margin: 0;
+    }
+
+    .profile-info p {
+        margin: 0;
+        color: #aaa;
+    }
+    a{
+        text-decoration:none;
+        color:white;
+    }
+    .hov1{
+        transition: background-color 0.3s ease; /* Плавный переход цвета */
+    }
+    .hov1:hover{
+        background-color: dimgray;
+    }
+</style>
+
+
+<h1>All Users</h1>
+
+<p style="text-align:center;margin-top: 41px;">
+    <a asp-action="Create" class="btn btn-primary"> Create New </a>
 </p>
-<table class="table">
-    <thead>
+@* <table class="table">
+ *@   @*  <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
@@ -27,9 +69,26 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
+    <tbody> *@
+@foreach (var item in Model)
+{
+
+    <div class="container mt-4">
+        <a asp-action="Details" asp-route-id="@item.UserId" class="row">   
+            <div class="col-md-8 offset-md-2">
+
+                <div class="profile-container hov1">
+                    <img src="~/lib/img/user_img.jpg" style="
+                     width: 10%;">
+                    <div class="profile-info" style="text-align: center;width: 75%;">
+                        <h5> @item.UserName</h5>
+                        <p>@item.Email</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>}
+        @* <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
@@ -39,12 +98,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
-            <td>
+            <td> *@
 @*                 @Html.DisplayFor(modelItem => item.ProfileImage)
 
- *@                 <img src="#" alt="Uploaded Image" class="img-thumbnail" />
+ *@                @*  <img src="#" alt="Uploaded Image" class="img-thumbnail" /> *@
 
-</td>
+@* </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
@@ -53,4 +112,6 @@
         </tr>
 }
     </tbody>
-</table>
+ *@
+@* </table>
+ *@
