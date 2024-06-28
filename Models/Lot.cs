@@ -12,17 +12,14 @@ namespace BidDecore.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
         public decimal StartPrice { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
         public decimal BuyOutPrice { get; set; }
 
         public string Description { get; set; }
 
         public DateTime Deadline { get; set; }
 
-        [MaxLength(50)]
         public string Category { get; set; }
 
         public byte[]? ImageData { get; set; }
