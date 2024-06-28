@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BidDecore.Models.Lot>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .hov1 {
+        transition: background-color 0.3s ease; /* Плавный переход цвета */
+    }
+
+        .hov1:hover {
+            background-color: dimgray;
+        }
+</style>
+<h1>Index</h1>
+
+<p style="text-align:center;margin-top: 41px;">
+    <a asp-action="Create" class="btn btn-primary"> Create New </a>
+</p>
+
+    
+@foreach (var item in Model)
+{
+    <div class="container mt-4">
+        <a asp-action="Details" asp-route-id="@item.LotId" class="row" style="text-decoration:none;">
+            <div class="col-md-8 offset-md-2">
+                <div class="profile-container hov1">
+                    <img src="~/lib/img/@(item.LotId % 3 + 1).jpg" style="width: 10%;">
+                    <div class="profile-info" style="text-align: center; width: 75%;">
+                        <h5> @item.BuyOutPrice$</h5>
+                        <p>@item.Category</p>
+                        <p>@item.Deadline</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+}
+
+ 

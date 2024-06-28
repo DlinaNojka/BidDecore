@@ -19,6 +19,20 @@ namespace BidDecore.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Search(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                return View("Index", await _context.Users.ToListAsync());
+            }
+
+            var results = await _context.Users
+                .Where(u => u.UserName.Contains(query))
+                .ToListAsync();
+
+            return View("Index", results);
+        }
+
         // GET: Users
         public async Task<IActionResult> Index()
         {

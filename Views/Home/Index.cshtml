@@ -1,8 +1,48 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    body{
+       /*  font-family: Arial, sans-serif; */
+        background: url('11111.jpg') no-repeat center center fixed;
+      /*   background-size: cover; */
+       /*  display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0; */
+    }
 
+    .container {
+        text-align: center;
+    }
+
+    .btn1 {
+        display: inline-block;
+        margin: 20px;
+        padding: 30px 60px;
+        font-size: 32px;
+        color: black;
+        background-color: rgba(255, 255, 255, 0.5); /* Більш прозорий білий фон */
+        border: 1px solid black;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+        .btn1:hover {
+            background-color: rgba(255, 255, 255, 0.8); /* Напівпрозорий білий фон при наведенні */
+            transform: scale(1.1);
+        }
+</style>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+<div class="container">
+    <a href="lots" class="btn1">Управління лотами</a>
+    <a href="users" class="btn1">Управління користувачами</a>
+
+    <a href="/admin/auctions" class="btn1">Статистика</a>
+</div> 

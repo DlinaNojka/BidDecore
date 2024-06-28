@@ -10,23 +10,26 @@ using BidDecore.Models;
 
 namespace BidDecore.Controllers
 {
-    public class LotController : Controller
+    public class LotsController : Controller
     {
+
         private readonly ApplicationDbContext _context;
 
-        public LotController(ApplicationDbContext context)
+        public LotsController(ApplicationDbContext context)
         {
             _context = context;
+
         }
 
-        // GET: Lot
+
+        // GET: Lots
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Lot.Include(l => l.User);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Lot/Details/5
+        // GET: Lots/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,14 +48,14 @@ namespace BidDecore.Controllers
             return View(lot);
         }
 
-        // GET: Lot/Create
+        // GET: Lots/Create
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
             return View();
         }
 
-        // POST: Lot/Create
+        // POST: Lots/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,11 +68,14 @@ namespace BidDecore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            _context.Add(lot);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", lot.UserId);
             return View(lot);
         }
 
-        // GET: Lot/Edit/5
+        // GET: Lots/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +92,7 @@ namespace BidDecore.Controllers
             return View(lot);
         }
 
-        // POST: Lot/Edit/5
+        // POST: Lots/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -118,11 +124,15 @@ namespace BidDecore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            //
+            _context.Update(lot);
+            await _context.SaveChangesAsync();
+            //
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", lot.UserId);
             return View(lot);
         }
 
-        // GET: Lot/Delete/5
+        // GET: Lots/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +151,7 @@ namespace BidDecore.Controllers
             return View(lot);
         }
 
-        // POST: Lot/Delete/5
+        // POST: Lots/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
